@@ -58,6 +58,17 @@ app.post("/", function (req, res) {
   res.redirect('/')
 })
 
+app.post('/delete',function(req,res){
+  const item=req.body.delItem
+  Item.findByIdAndRemove(item,(e)=>{
+    if(!e){
+      res.redirect('/')
+    }else{
+      console.log(e)
+    }
+  })
+})
+
 app.listen(3000, function () {
   console.log("Server started on port 3000")
 })
